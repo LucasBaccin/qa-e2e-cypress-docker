@@ -63,3 +63,9 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./projeto-testes/allure-report
+
+    - name: Exibir link do relatório
+      if: always() # Garante que o link seja exibido mesmo que os testes falhem
+      run: |
+         echo "Relatório Allure publicado em: https://LucasBaccin.github.io/hub-de-leitura-integrado/"
+         echo "" >> $GITHUB_STEP_SUMMARY
