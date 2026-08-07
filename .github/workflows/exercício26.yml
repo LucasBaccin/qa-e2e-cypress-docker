@@ -28,7 +28,7 @@ jobs:
         cache: 'npm'
         cache-dependency-path: |
             hub-de-leitura/package-lock.json
-            projeto-testes/cypress/package-lock.json
+            projeto-testes/package-lock.json
 
     - name: Instalar dependências do hub de leitura
       working-directory: hub-de-leitura
@@ -42,9 +42,9 @@ jobs:
       run: npx wait-on http://127.0.0.1:3000 --timeout=10000
 
     - name: Instalar dependências do repositório de testes
-      working-directory: projeto-testes/cypress
+      working-directory: projeto-testes
       run: npm install
 
     - name: Executar os testes
-      working-directory: projeto-testes/cypress
+      working-directory: projeto-testes
       run: npx cypress run
