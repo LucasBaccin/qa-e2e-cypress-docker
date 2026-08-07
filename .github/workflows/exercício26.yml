@@ -50,6 +50,8 @@ jobs:
       run: npx cypress run
 
     - name: Gerar relatório Allure
+      if: always() # Garante que o relatório seja gerado mesmo que os testes falhem
+      working-directory: projeto-testes
       run: npm run report:generate
 
     - name: Publicar relatório no GitHub Pages
