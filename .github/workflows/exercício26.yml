@@ -13,7 +13,7 @@ jobs:
     - name: Checkout do repositório de testes
       uses: actions/checkout@v4
       with:
-        path: Cypress
+        path: projeto-testes
 
     - name: Checkout do hub de leitura
       uses: actions/checkout@v4
@@ -26,25 +26,25 @@ jobs:
       with:
         node-version: 20
         cache: 'npm'
-        cache-dependency-path:
+        cache-dependency-path: |
             hub-de-leitura/package-lock.json
-            Cypress/package-lock.json
+            projeto-testes/cypress/package-lock.json
 
     - name: Instalar dependências do hub de leitura
-      working-directory: ./hub-de-leitura
+      working-directory: hub-de-leitura
       run: npm install
 
     - name: Iniciar o hub de leitura
-      working-directory: ./hub-de-leitura
+      working-directory: hub-de-leitura
       run: npm start &
 
     - name: Aguardar o hub de leitura iniciar
-      run: npx wait-on http://localhost:3000 --timeout=10000
+      run: npx wait-on http://127.0.0.1:3000 --timeout=10000
 
     - name: Instalar dependências do repositório de testes
-      working-directory: Cypress
+      working-directory: projeto-testes/cypress
       run: npm install
 
     - name: Executar os testes
-      working-directory: Cypress
+      working-directory: projeto-testes/cypress
       run: npx cypress run
