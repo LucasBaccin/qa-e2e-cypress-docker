@@ -12,11 +12,12 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "^23.2.0",
-    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.6",
+    "@badeball/cypress-cucumber-preprocessor": "^23.2.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
     "allure-commandline": "^2.43.0",
     "allure-cypress": "^3.10.2",
     "cypress": "^14.5.4",
+    "cypress-on-fix": "^1.1.0",
     "esbuild": "^0.25.10"
   }
 }
