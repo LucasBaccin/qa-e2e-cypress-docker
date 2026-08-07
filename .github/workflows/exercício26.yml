@@ -4,6 +4,9 @@ on:
   push:
     branches: [ "main" ]
 
+permissions:
+  contents: write
+
 jobs:
   build:
 
@@ -55,7 +58,8 @@ jobs:
       run: npm run report:generate
 
     - name: Publicar relatório no GitHub Pages
+      if: always() # Garante que o relatório seja publicado mesmo que os testes falhem
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./allure-report
+        publish_dir: ./projeto-testes/allure-report
