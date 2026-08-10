@@ -1,0 +1,28 @@
+services:
+
+  hub:
+    build:
+      context: .
+      dockerfile: docker/hub.Dockerfile
+    container_name: hub-de-leitura
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: [ "CMD", "node", "-e", "require('http').get('http://localhost:3000', res => process.exit(res.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1))" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  cypress:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cypress-tests
+    depends_on:
+      hub:
+        condition: service_healthy
+    environment:
+      CYPRESS_baseUrl: http://hub:3000
+    volumes:
+      - ./allure-results:/e2e/allure-results
+      - ./allure-report:/e2e/allure-report
