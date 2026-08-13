@@ -50,7 +50,7 @@ jobs:
 
     - name: Executar os testes e registrar no Cypress Cloud
       working-directory: projeto-testes
-      run: npx cypress run
+      run: npx cypress run --record
       env:
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
