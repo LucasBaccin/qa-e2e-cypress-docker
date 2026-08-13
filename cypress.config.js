@@ -7,6 +7,7 @@ const cypressOnFixModule = require('cypress-on-fix');
 const cypressOnFix = cypressOnFixModule.default || cypressOnFixModule;
 
 module.exports = defineConfig({
+  projectId: "k3di2j",
   e2e: {
     async setupNodeEvents(on, config) {
       on = cypressOnFix(on);
